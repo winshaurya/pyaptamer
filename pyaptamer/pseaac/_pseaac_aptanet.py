@@ -98,21 +98,13 @@ class AptaNetPSeAAC(PSeAAC):
     """
 
     def __init__(self, lambda_val=30, weight=0.05):
-        self.lambda_val = lambda_val
-        self.weight = weight
+        super().__init__(
+            lambda_val=lambda_val,
+            weight=weight,
+            prop_indices=list(range(21)),
+            group_props=3,
+        )
 
-        # Load normalized property matrix (20x21, rows=AA, cols=NP1-NP21)
-        self.np_matrix = aa_props(type="numpy", normalize=True)
-        # Each prop_group is a tuple of 3 columns (property indices)
-        self.prop_groups = [
-            (0, 1, 2),
-            (3, 4, 5),
-            (6, 7, 8),
-            (9, 10, 11),
-            (12, 13, 14),
-            (15, 16, 17),
-            (18, 19, 20),
-        ]
 
     def _normalized_aa(self, seq):
         """
