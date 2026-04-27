@@ -7,6 +7,7 @@ import numpy as np
 
 from pyaptamer.pseaac._props import aa_props
 from pyaptamer.utils._pseaac_utils import AMINO_ACIDS, clean_protein_seq
+from pyaptamer.pseaac._pseaac_general import PSeAAC
 
 
 class AptaNetPSeAAC:
@@ -228,4 +229,5 @@ class AptaNetPSeAAC:
             )
 
         return np.array(all_pseaac)
+
 
