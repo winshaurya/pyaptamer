@@ -125,3 +125,11 @@ def test_pseaac_configurations(
     assert len(vec) == expected_len, (
         f"Expected vector length {expected_len}, but got {len(vec)}"
     )
+
+
+def test_aptanet_matches_general_defaults():
+    seq = "ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY"
+    aptanet = AptaNetPSeAAC()
+    general = PSeAAC(prop_indices=list(range(21)), group_props=3)
+
+    assert np.allclose(aptanet.transform(seq), general.transform(seq), atol=1e-12)

@@ -98,6 +98,3 @@ class AptaNetPSeAAC(PSeAAC):
             prop_indices=list(range(21)),
             group_props=3,
         )
-
-
-
