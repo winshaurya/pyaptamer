@@ -106,55 +106,6 @@ class AptaNetPSeAAC(PSeAAC):
         )
 
 
-    def _normalized_aa(self, seq):
-        """
-        Compute the normalized amino acid composition for a sequence.
-
-        Parameters
-        ----------
-        seq : str
-            Protein sequence.
-
-        Returns
-        -------
-        np.ndarray
-            A 1D NumPy array of length 20, where each entry corresponds to the frequency
-            of a standard amino acid in the input sequence. The order of amino acids is:
-            ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R',
-            'S', 'T', 'V', 'W', 'Y']
-        """
-        counts = Counter(seq)
-        total = len(seq)
-        return np.array([counts.get(aa, 0) / total for aa in AMINO_ACIDS])
-
-    def _avg_theta_val(self, seq_vec, seq_len, n, prop_group):
-        """
-        Compute the average theta value for a sequence and property group.
-
-        Parameters
-        ----------
-        seq_vec : np.ndarray
-            Sequence converted to integer indices (shape: [seq_len]).
-        seq_len : int
-            Length of the sequence.
-        n : int
-            Offset for theta calculation.
-        prop_group : tuple of int
-            Tuple of property indices.
-
-        Returns
-        -------
-        float
-            Average theta value.
-        """
-        props = self.np_matrix[:, prop_group]
-
-        ri = props[seq_vec[: seq_len - n]]
-        rj = props[seq_vec[n:]]
-
-        diffs = rj - ri
-        return np.mean(diffs**2)
-
     def transform(self, protein_sequence):
         """
         Generate the PseAAC feature vector for the given protein sequence.
