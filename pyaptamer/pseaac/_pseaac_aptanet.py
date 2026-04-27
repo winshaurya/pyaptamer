@@ -89,8 +89,8 @@ class AptaNetPSeAAC:
 
     Example
     -------
-    >>> from pyaptamer.pseaac import PSeAAC
-    >>> pseaac = PSeAAC()
+    >>> from pyaptamer.pseaac import AptaNetPSeAAC
+    >>> pseaac = AptaNetPSeAAC()
     >>> features = pseaac.transform("ACDEFGHIKLMNPQRHIKLMNPQRSTVWHIKLMNPQRSTVWY")
     >>> print(features[:10])
     [0.006 0.006 0.006 0.006 0.006 0.006 0.018 0.018 0.018 0.018]
@@ -228,3 +228,4 @@ class AptaNetPSeAAC:
             )
 
         return np.array(all_pseaac)
+
